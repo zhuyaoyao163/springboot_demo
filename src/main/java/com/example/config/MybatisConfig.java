@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -25,13 +26,14 @@ import java.util.Properties;
 public class MybatisConfig implements TransactionManagementConfigurer {
 
     @Autowired
-    public DataSource masterDataSource;
+    @Qualifier("dynamicDataSource")
+    public DataSource dynamicDataSource;
 
 
     @Bean(name = "sqlSessionFactory")
     public SqlSessionFactory sqlSessionFactoryBean() {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-        bean.setDataSource(masterDataSource);
+        bean.setDataSource(dynamicDataSource);
         bean.setTypeAliasesPackage("com.example.domain");
 
         //分页插件
@@ -59,6 +61,6 @@ public class MybatisConfig implements TransactionManagementConfigurer {
 
     @Override
     public PlatformTransactionManager annotationDrivenTransactionManager() {
-        return new DataSourceTransactionManager(masterDataSource);
+        return new DataSourceTransactionManager(dynamicDataSource);
     }
 }
