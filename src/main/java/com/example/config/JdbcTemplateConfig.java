@@ -12,26 +12,26 @@ import javax.sql.DataSource;
 /**
  * Created by Administrator on 2016/7/6.
  */
-@Configuration
+//@Configuration
 public class JdbcTemplateConfig {
 
-    @Bean(name = "masterDataSource")
-    @ConfigurationProperties(prefix = "datasource.master")
-    public DataSource masterDataSource() {
-        return DataSourceBuilder.create().build();
-    }
-
+//    @Bean(name = "masterDataSource")
+//    @ConfigurationProperties(prefix = "datasource.master")
+//    public DataSource masterDataSource() {
+//        return DataSourceBuilder.create().build();
+//    }
+//
 //    @Bean(name = "slaveDataSource")
 //    @ConfigurationProperties(prefix = "datasource.slave")
 //    public DataSource slaveDataSource() {
 //        return DataSourceBuilder.create().build();
 //    }
-
-    @Bean(name = "masterJdbcTemplate")
-    public JdbcTemplate masterJdbcTemplate(@Qualifier("masterDataSource") DataSource masterDataSource) {
-        return new JdbcTemplate(masterDataSource);
-    }
-
+//
+//    @Bean(name = "masterJdbcTemplate")
+//    public JdbcTemplate masterJdbcTemplate(@Qualifier("masterDataSource") DataSource masterDataSource) {
+//        return new JdbcTemplate(masterDataSource);
+//    }
+//
 //    @Bean(name = "slaveJdbcTemplate")
 //    public JdbcTemplate slaveJdbcTemplate(@Qualifier("slaveDataSource") DataSource slaveDataSource) {
 //        return new JdbcTemplate(slaveDataSource);
