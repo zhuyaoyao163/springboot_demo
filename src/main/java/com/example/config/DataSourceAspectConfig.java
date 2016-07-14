@@ -21,7 +21,7 @@ public class DataSourceAspectConfig {
         return new DataSourceAspect();
     }
 
-    @Pointcut("execution(* com.example.*.service.*.*(..)))")
+    @Pointcut("execution(* com.example.service.*.*(..)))")
     public void doService() {
     }
 

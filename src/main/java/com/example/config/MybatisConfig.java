@@ -26,7 +26,6 @@ import java.util.Properties;
 public class MybatisConfig implements TransactionManagementConfigurer {
 
     @Autowired
-    @Qualifier("dynamicDataSource")
     public DataSource dynamicDataSource;
 
 

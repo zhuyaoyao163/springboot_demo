@@ -1,5 +1,7 @@
 package com.example.service.impl;
 
+import com.example.config.DataSource;
+import com.example.config.DynamicDataSource;
 import com.example.domain.Country;
 import com.example.mapper.CountryMapper;
 import com.example.service.ICountryService;
@@ -17,6 +19,7 @@ public class ICountryServiceImpl implements ICountryService {
     private CountryMapper countryMapper;
 
     @Override
+    @DataSource("slave1")
     public int saveCountry(Country country) {
         return countryMapper.insert(country);
     }

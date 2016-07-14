@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+import com.example.config.DataSource;
 import com.example.domain.Country;
 
 public interface CountryMapper {
