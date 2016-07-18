@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.common.vo.RspData;
+import com.example.config.amqp.Send;
 import com.example.domain.Country;
 import com.example.service.ICountryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,12 @@ public class CountryController {
     @Autowired
     public ICountryService countryService;
 
+    @Autowired
+    private Send send;
+
     @RequestMapping(value = "/country/save")
     public RspData saveCountry(@RequestBody Country country) {
+        send.sendMsg("aaaaaaaaaaaa");
         RspData rspData = new RspData();
         if(countryService.saveCountry(country) == 1){
             return RspData.success(null);
