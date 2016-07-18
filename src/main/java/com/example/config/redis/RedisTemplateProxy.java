@@ -130,7 +130,7 @@ public class RedisTemplateProxy
             List shardInfoList = new ArrayList();
             String[] propArr = props.split(",");
             for (String prop : propArr) {
-                JedisShardInfo shardInfo = new JedisShardInfo(prop);
+                    JedisShardInfo shardInfo = new JedisShardInfo(prop);
                 shardInfoList.add(shardInfo);
             }
             return shardInfoList;
