@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Scope;
  *
  */
 
-@Configuration
+//@Configuration
 public class AmqpConfig {
 
     public static final String EXCHANGE   = "spring-boot-exchange";

@@ -2,8 +2,6 @@ package com.example.controller;
 
 import com.example.common.vo.RspData;
 import com.example.config.amqp.Send;
-import com.example.config.redis.BasicRedisDao;
-import com.example.config.redis.RedisTemplateProxy;
 import com.example.domain.Country;
 import com.example.service.ICountryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +24,6 @@ public class CountryController {
     @Autowired
     private Send send;
 
-    @Autowired
-    @Qualifier("redisTemplateProxy")
-    private RedisTemplateProxy redisTemplate;
 
     @RequestMapping(value = "/country/save")
     public RspData saveCountry(@RequestBody Country country) {
