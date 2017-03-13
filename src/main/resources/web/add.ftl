@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="/webjarslocator/bootstrap/bootstrap.min.css">
 </head>
@@ -23,7 +24,15 @@
             <input type = "file" id = "idCard"></input>
         </div>
         <div class = "form-group">
-            <label for = "profession">选择职业</label>
+            <label for = "profession">选择省份</label>
+            <select id = "profession" class = "form-control">
+                <#list areas as area>
+                    <option value="${area.areaCode}">${area.areaName}</option>
+                </#list>
+            </select>
+        </div>
+        <div class = "form-group">
+            <label for = "profession">职业</label>
             <select id = "profession" class = "form-control">
                 <option>软件工程师</option>
                 <option>测试工程师</option>

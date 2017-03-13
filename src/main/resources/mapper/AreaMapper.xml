@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.AreaMapper" >
+  <resultMap id="BaseResultMap" type="com.example.domain.Area" >
+    <id column="AREA_CODE" property="areaCode" jdbcType="VARCHAR" />
+    <result column="AREA_NAME" property="areaName" jdbcType="VARCHAR" />
+    <result column="SHORT_NAME" property="shortName" jdbcType="VARCHAR" />
+    <result column="AREA_LEVEL" property="areaLevel" jdbcType="VARCHAR" />
+    <result column="PARENT_CODE" property="parentCode" jdbcType="VARCHAR" />
+    <result column="HOT_FLAG" property="hotFlag" jdbcType="VARCHAR" />
+    <result column="VALID_STATUS" property="validStatus" jdbcType="VARCHAR" />
+    <result column="LICENSE_PREFIX" property="licensePrefix" jdbcType="VARCHAR" />
+    <result column="PROVINCE_FLAG" property="provinceFlag" jdbcType="VARCHAR" />
+    <result column="OPERATOR_CODE" property="operatorCode" jdbcType="VARCHAR" />
+    <result column="OPERATOR_NAME" property="operatorName" jdbcType="VARCHAR" />
+    <result column="OPERATOR_DATE" property="operatorDate" jdbcType="TIMESTAMP" />
+    <result column="FEE_CHANGE_FLAG" property="feeChangeFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    AREA_CODE, AREA_NAME, SHORT_NAME, AREA_LEVEL, PARENT_CODE, HOT_FLAG, VALID_STATUS, 
+    LICENSE_PREFIX, PROVINCE_FLAG, OPERATOR_CODE, OPERATOR_NAME, OPERATOR_DATE, FEE_CHANGE_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from db_area
+    where AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from db_area
+    where AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.domain.Area" >
+    insert into db_area (AREA_CODE, AREA_NAME, SHORT_NAME, 
+      AREA_LEVEL, PARENT_CODE, HOT_FLAG, 
+      VALID_STATUS, LICENSE_PREFIX, PROVINCE_FLAG, 
+      OPERATOR_CODE, OPERATOR_NAME, OPERATOR_DATE, 
+      FEE_CHANGE_FLAG)
+    values (#{areaCode,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR}, 
+      #{areaLevel,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR}, #{hotFlag,jdbcType=VARCHAR}, 
+      #{validStatus,jdbcType=VARCHAR}, #{licensePrefix,jdbcType=VARCHAR}, #{provinceFlag,jdbcType=VARCHAR}, 
+      #{operatorCode,jdbcType=VARCHAR}, #{operatorName,jdbcType=VARCHAR}, #{operatorDate,jdbcType=TIMESTAMP}, 
+      #{feeChangeFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.domain.Area" >
+    insert into db_area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaCode != null" >
+        AREA_CODE,
+      </if>
+      <if test="areaName != null" >
+        AREA_NAME,
+      </if>
+      <if test="shortName != null" >
+        SHORT_NAME,
+      </if>
+      <if test="areaLevel != null" >
+        AREA_LEVEL,
+      </if>
+      <if test="parentCode != null" >
+        PARENT_CODE,
+      </if>
+      <if test="hotFlag != null" >
+        HOT_FLAG,
+      </if>
+      <if test="validStatus != null" >
+        VALID_STATUS,
+      </if>
+      <if test="licensePrefix != null" >
+        LICENSE_PREFIX,
+      </if>
+      <if test="provinceFlag != null" >
+        PROVINCE_FLAG,
+      </if>
+      <if test="operatorCode != null" >
+        OPERATOR_CODE,
+      </if>
+      <if test="operatorName != null" >
+        OPERATOR_NAME,
+      </if>
+      <if test="operatorDate != null" >
+        OPERATOR_DATE,
+      </if>
+      <if test="feeChangeFlag != null" >
+        FEE_CHANGE_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaLevel != null" >
+        #{areaLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null" >
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hotFlag != null" >
+        #{hotFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="validStatus != null" >
+        #{validStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="licensePrefix != null" >
+        #{licensePrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceFlag != null" >
+        #{provinceFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorCode != null" >
+        #{operatorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null" >
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorDate != null" >
+        #{operatorDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feeChangeFlag != null" >
+        #{feeChangeFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.domain.Area" >
+    update db_area
+    <set >
+      <if test="areaName != null" >
+        AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        SHORT_NAME = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaLevel != null" >
+        AREA_LEVEL = #{areaLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null" >
+        PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hotFlag != null" >
+        HOT_FLAG = #{hotFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="validStatus != null" >
+        VALID_STATUS = #{validStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="licensePrefix != null" >
+        LICENSE_PREFIX = #{licensePrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceFlag != null" >
+        PROVINCE_FLAG = #{provinceFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorCode != null" >
+        OPERATOR_CODE = #{operatorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null" >
+        OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorDate != null" >
+        OPERATOR_DATE = #{operatorDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feeChangeFlag != null" >
+        FEE_CHANGE_FLAG = #{feeChangeFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.domain.Area" >
+    update db_area
+    set AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      SHORT_NAME = #{shortName,jdbcType=VARCHAR},
+      AREA_LEVEL = #{areaLevel,jdbcType=VARCHAR},
+      PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      HOT_FLAG = #{hotFlag,jdbcType=VARCHAR},
+      VALID_STATUS = #{validStatus,jdbcType=VARCHAR},
+      LICENSE_PREFIX = #{licensePrefix,jdbcType=VARCHAR},
+      PROVINCE_FLAG = #{provinceFlag,jdbcType=VARCHAR},
+      OPERATOR_CODE = #{operatorCode,jdbcType=VARCHAR},
+      OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR},
+      OPERATOR_DATE = #{operatorDate,jdbcType=TIMESTAMP},
+      FEE_CHANGE_FLAG = #{feeChangeFlag,jdbcType=VARCHAR}
+    where AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectProvince" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from db_area
+    where PROVINCE_FLAG = '1'
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from db_area
+  </select>
+</mapper>
