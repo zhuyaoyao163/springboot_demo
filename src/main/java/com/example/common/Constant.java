@@ -12,4 +12,5 @@ public class Constant {
     public static final String APP_ID = "appid";
     public static final String APP_SECRET = "appsecret";
     public static final String ACCESS_TOKEN = "access_token";
+    public static final String CACHE_NAME = "config";
 }
