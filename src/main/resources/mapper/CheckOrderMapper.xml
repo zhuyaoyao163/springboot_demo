@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.CheckOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.example.domain.CheckOrder" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CAR_NO" property="carNo" jdbcType="VARCHAR" />
+    <result column="DEFECT_DESC" property="defectDesc" jdbcType="VARCHAR" />
+    <result column="INPORTANCE_CODE" property="inportanceCode" jdbcType="VARCHAR" />
+    <result column="FREQUENCY" property="frequency" jdbcType="INTEGER" />
+    <result column="FOLDING_FREQUENCY" property="foldingFrequency" jdbcType="DOUBLE" />
+    <result column="RES_DEPARTMENT_ID" property="resDepartmentId" jdbcType="INTEGER" />
+    <result column="RES_USER_ID" property="resUserId" jdbcType="INTEGER" />
+    <result column="RES_DEPARTMENT_LEADER_ID" property="resDepartmentLeaderId" jdbcType="INTEGER" />
+    <result column="PROCESS" property="process" jdbcType="VARCHAR" />
+    <result column="DEFECT" property="defect" jdbcType="VARCHAR" />
+    <result column="CHECK_NUM" property="checkNum" jdbcType="INTEGER" />
+    <result column="DEBIT" property="debit" jdbcType="DOUBLE" />
+    <result column="LIADER_DEBIT" property="liaderDebit" jdbcType="DOUBLE" />
+    <result column="WEEK_NUM" property="weekNum" jdbcType="INTEGER" />
+    <result column="PICTURE_URL" property="pictureUrl" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="FLAG" property="flag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CAR_NO, DEFECT_DESC, INPORTANCE_CODE, FREQUENCY, FOLDING_FREQUENCY, RES_DEPARTMENT_ID, 
+    RES_USER_ID, RES_DEPARTMENT_LEADER_ID, PROCESS, DEFECT, CHECK_NUM, DEBIT, LIADER_DEBIT, 
+    WEEK_NUM, PICTURE_URL, CREATE_TIME, UPDATE_TIME, FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jl_check_order
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jl_check_order
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.domain.CheckOrder" >
+    insert into jl_check_order (ID, CAR_NO, DEFECT_DESC, 
+      INPORTANCE_CODE, FREQUENCY, FOLDING_FREQUENCY, 
+      RES_DEPARTMENT_ID, RES_USER_ID, RES_DEPARTMENT_LEADER_ID, 
+      PROCESS, DEFECT, CHECK_NUM, 
+      DEBIT, LIADER_DEBIT, WEEK_NUM, 
+      PICTURE_URL, CREATE_TIME, UPDATE_TIME, 
+      FLAG)
+    values (#{id,jdbcType=INTEGER}, #{carNo,jdbcType=VARCHAR}, #{defectDesc,jdbcType=VARCHAR}, 
+      #{inportanceCode,jdbcType=VARCHAR}, #{frequency,jdbcType=INTEGER}, #{foldingFrequency,jdbcType=DOUBLE}, 
+      #{resDepartmentId,jdbcType=INTEGER}, #{resUserId,jdbcType=INTEGER}, #{resDepartmentLeaderId,jdbcType=INTEGER}, 
+      #{process,jdbcType=VARCHAR}, #{defect,jdbcType=VARCHAR}, #{checkNum,jdbcType=INTEGER}, 
+      #{debit,jdbcType=DOUBLE}, #{liaderDebit,jdbcType=DOUBLE}, #{weekNum,jdbcType=INTEGER}, 
+      #{pictureUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{flag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.domain.CheckOrder" >
+    insert into jl_check_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="carNo != null" >
+        CAR_NO,
+      </if>
+      <if test="defectDesc != null" >
+        DEFECT_DESC,
+      </if>
+      <if test="inportanceCode != null" >
+        INPORTANCE_CODE,
+      </if>
+      <if test="frequency != null" >
+        FREQUENCY,
+      </if>
+      <if test="foldingFrequency != null" >
+        FOLDING_FREQUENCY,
+      </if>
+      <if test="resDepartmentId != null" >
+        RES_DEPARTMENT_ID,
+      </if>
+      <if test="resUserId != null" >
+        RES_USER_ID,
+      </if>
+      <if test="resDepartmentLeaderId != null" >
+        RES_DEPARTMENT_LEADER_ID,
+      </if>
+      <if test="process != null" >
+        PROCESS,
+      </if>
+      <if test="defect != null" >
+        DEFECT,
+      </if>
+      <if test="checkNum != null" >
+        CHECK_NUM,
+      </if>
+      <if test="debit != null" >
+        DEBIT,
+      </if>
+      <if test="liaderDebit != null" >
+        LIADER_DEBIT,
+      </if>
+      <if test="weekNum != null" >
+        WEEK_NUM,
+      </if>
+      <if test="pictureUrl != null" >
+        PICTURE_URL,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="flag != null" >
+        FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="carNo != null" >
+        #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="defectDesc != null" >
+        #{defectDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="inportanceCode != null" >
+        #{inportanceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null" >
+        #{frequency,jdbcType=INTEGER},
+      </if>
+      <if test="foldingFrequency != null" >
+        #{foldingFrequency,jdbcType=DOUBLE},
+      </if>
+      <if test="resDepartmentId != null" >
+        #{resDepartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="resUserId != null" >
+        #{resUserId,jdbcType=INTEGER},
+      </if>
+      <if test="resDepartmentLeaderId != null" >
+        #{resDepartmentLeaderId,jdbcType=INTEGER},
+      </if>
+      <if test="process != null" >
+        #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="defect != null" >
+        #{defect,jdbcType=VARCHAR},
+      </if>
+      <if test="checkNum != null" >
+        #{checkNum,jdbcType=INTEGER},
+      </if>
+      <if test="debit != null" >
+        #{debit,jdbcType=DOUBLE},
+      </if>
+      <if test="liaderDebit != null" >
+        #{liaderDebit,jdbcType=DOUBLE},
+      </if>
+      <if test="weekNum != null" >
+        #{weekNum,jdbcType=INTEGER},
+      </if>
+      <if test="pictureUrl != null" >
+        #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.domain.CheckOrder" >
+    update jl_check_order
+    <set >
+      <if test="carNo != null" >
+        CAR_NO = #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="defectDesc != null" >
+        DEFECT_DESC = #{defectDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="inportanceCode != null" >
+        INPORTANCE_CODE = #{inportanceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null" >
+        FREQUENCY = #{frequency,jdbcType=INTEGER},
+      </if>
+      <if test="foldingFrequency != null" >
+        FOLDING_FREQUENCY = #{foldingFrequency,jdbcType=DOUBLE},
+      </if>
+      <if test="resDepartmentId != null" >
+        RES_DEPARTMENT_ID = #{resDepartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="resUserId != null" >
+        RES_USER_ID = #{resUserId,jdbcType=INTEGER},
+      </if>
+      <if test="resDepartmentLeaderId != null" >
+        RES_DEPARTMENT_LEADER_ID = #{resDepartmentLeaderId,jdbcType=INTEGER},
+      </if>
+      <if test="process != null" >
+        PROCESS = #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="defect != null" >
+        DEFECT = #{defect,jdbcType=VARCHAR},
+      </if>
+      <if test="checkNum != null" >
+        CHECK_NUM = #{checkNum,jdbcType=INTEGER},
+      </if>
+      <if test="debit != null" >
+        DEBIT = #{debit,jdbcType=DOUBLE},
+      </if>
+      <if test="liaderDebit != null" >
+        LIADER_DEBIT = #{liaderDebit,jdbcType=DOUBLE},
+      </if>
+      <if test="weekNum != null" >
+        WEEK_NUM = #{weekNum,jdbcType=INTEGER},
+      </if>
+      <if test="pictureUrl != null" >
+        PICTURE_URL = #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        FLAG = #{flag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.domain.CheckOrder" >
+    update jl_check_order
+    set CAR_NO = #{carNo,jdbcType=VARCHAR},
+      DEFECT_DESC = #{defectDesc,jdbcType=VARCHAR},
+      INPORTANCE_CODE = #{inportanceCode,jdbcType=VARCHAR},
+      FREQUENCY = #{frequency,jdbcType=INTEGER},
+      FOLDING_FREQUENCY = #{foldingFrequency,jdbcType=DOUBLE},
+      RES_DEPARTMENT_ID = #{resDepartmentId,jdbcType=INTEGER},
+      RES_USER_ID = #{resUserId,jdbcType=INTEGER},
+      RES_DEPARTMENT_LEADER_ID = #{resDepartmentLeaderId,jdbcType=INTEGER},
+      PROCESS = #{process,jdbcType=VARCHAR},
+      DEFECT = #{defect,jdbcType=VARCHAR},
+      CHECK_NUM = #{checkNum,jdbcType=INTEGER},
+      DEBIT = #{debit,jdbcType=DOUBLE},
+      LIADER_DEBIT = #{liaderDebit,jdbcType=DOUBLE},
+      WEEK_NUM = #{weekNum,jdbcType=INTEGER},
+      PICTURE_URL = #{pictureUrl,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      FLAG = #{flag,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
