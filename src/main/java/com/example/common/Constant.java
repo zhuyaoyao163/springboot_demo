@@ -14,4 +14,7 @@ public class Constant {
     public static final String ACCESS_TOKEN = "access_token";
     public static final String JSAPI_TICKET = "ticket";
     public static final String CACHE_NAME = "config";
+    public static final String VALID_FLAG = "1";
+    public static final String VALID_IS_NOT_FLAG = "0";
+
 }

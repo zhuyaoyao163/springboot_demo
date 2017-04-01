@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.domain.CheckOrder;
 import com.example.vo.JssdkConfigVo;
 
 /**
@@ -8,4 +9,6 @@ import com.example.vo.JssdkConfigVo;
 public interface CheckOrderService {
 
     public JssdkConfigVo initJssdk(String requestUrl) throws Exception;
+
+    public int insertCheckOrder(CheckOrder checkOrder);
 }

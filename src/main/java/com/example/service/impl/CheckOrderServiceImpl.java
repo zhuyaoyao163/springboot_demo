@@ -3,6 +3,8 @@ package com.example.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.example.common.Constant;
 import com.example.common.Sha1Util;
+import com.example.domain.CheckOrder;
+import com.example.mapper.CheckOrderMapper;
 import com.example.service.CacheService;
 import com.example.service.CheckOrderService;
 import com.example.vo.JssdkConfigVo;
@@ -11,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -22,6 +25,9 @@ public class CheckOrderServiceImpl implements CheckOrderService{
 
     @Resource
     private CacheService cacheService;
+
+    @Resource
+    private CheckOrderMapper checkOrderMapper;
 
     private Logger logger = LoggerFactory.getLogger(CheckOrderServiceImpl.class);
 
@@ -46,5 +52,12 @@ public class CheckOrderServiceImpl implements CheckOrderService{
         jssdkConfigVo.setTimestamp(timestamp);
         logger.info("初始化jssdk,返回:{}", JSON.toJSONString(jssdkConfigVo));
         return jssdkConfigVo;
+    }
+
+    @Override
+    public int insertCheckOrder(CheckOrder checkOrder) {
+        checkOrder.setFlag(Constant.VALID_FLAG);
+        checkOrder.setCreateTime(new Date());
+        return checkOrderMapper.insert(checkOrder);
     }
 }

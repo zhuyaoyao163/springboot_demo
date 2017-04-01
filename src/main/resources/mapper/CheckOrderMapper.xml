@@ -38,14 +38,14 @@
     where ID = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.example.domain.CheckOrder" >
-    insert into jl_check_order (ID, CAR_NO, DEFECT_DESC, 
+    insert into jl_check_order (CAR_NO, DEFECT_DESC,
       INPORTANCE_CODE, FREQUENCY, FOLDING_FREQUENCY, 
       RES_DEPARTMENT_ID, RES_USER_ID, RES_DEPARTMENT_LEADER_ID, 
       PROCESS, DEFECT, CHECK_NUM, 
       DEBIT, LIADER_DEBIT, WEEK_NUM, 
       PICTURE_URL, CREATE_TIME, UPDATE_TIME, 
       FLAG)
-    values (#{id,jdbcType=INTEGER}, #{carNo,jdbcType=VARCHAR}, #{defectDesc,jdbcType=VARCHAR}, 
+    values (#{carNo,jdbcType=VARCHAR}, #{defectDesc,jdbcType=VARCHAR},
       #{inportanceCode,jdbcType=VARCHAR}, #{frequency,jdbcType=INTEGER}, #{foldingFrequency,jdbcType=DOUBLE}, 
       #{resDepartmentId,jdbcType=INTEGER}, #{resUserId,jdbcType=INTEGER}, #{resDepartmentLeaderId,jdbcType=INTEGER}, 
       #{process,jdbcType=VARCHAR}, #{defect,jdbcType=VARCHAR}, #{checkNum,jdbcType=INTEGER}, 

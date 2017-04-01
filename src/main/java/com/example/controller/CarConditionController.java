@@ -9,6 +9,7 @@ import com.example.common.enums.ProcessEnum;
 import com.example.common.exception.BusinessException;
 import com.example.common.vo.RspData;
 import com.example.domain.Area;
+import com.example.domain.CheckOrder;
 import com.example.domain.Department;
 import com.example.domain.User;
 import com.example.service.*;
@@ -195,5 +196,17 @@ public class CarConditionController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @RequestMapping("/addCheckOrder")
+    public String addCheckOrder(HttpServletRequest request, HttpServletResponse response, CheckOrder checkOrder) {
+        logger.info("addCheckOrder  request:{}", JSON.toJSONString(checkOrder));
+        int res = checkOrderService.insertCheckOrder(checkOrder);
+        if (res == 1) {
+            return "success";
+        }else {
+            throw new BusinessException("系统异常！", Constant.EXCEPTION_CODE);
+        }
+
     }
 }
