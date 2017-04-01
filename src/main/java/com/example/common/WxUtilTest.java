@@ -21,7 +21,7 @@ public class WxUtilTest {
     private static final String APPID = "wxcb5d1365c034060c";
     private static final String APPSECRET = "b3a87f8c7bc841956e127b0fb2990fdc";
 
-    private static final Logger logger = LoggerFactory.getLogger("MyApp.class");
+    private static final Logger logger = LoggerFactory.getLogger(WxUtilTest.class);
 
 
     public static String getAccessToken() {
@@ -55,7 +55,35 @@ public class WxUtilTest {
 
     }
 
+    public static void createMenu() {
+        String accessToken = getAccessToken();
+        String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + accessToken;
+        String menuStr = "{\n" +
+                "     \"button\":[\n" +
+                "     {\t\n" +
+                "          \"type\":\"click\",\n" +
+                "          \"name\":\"今日歌曲\",\n" +
+                "          \"key\":\"V1001_TODAY_MUSIC\"\n" +
+                "      },\n" +
+                "      {\n" +
+                "           \"name\":\"菜单\",\n" +
+                "           \"sub_button\":[\n" +
+                "           {\t\n" +
+                "               \"type\":\"view\",\n" +
+                "               \"name\":\"录单\",\n" +
+                "               \"url\":\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcb5d1365c034060c&redirect_uri=http://zhuyaoyao.natapp1.cc/carCondition/addInit&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "               \"type\":\"click\",\n" +
+                "               \"name\":\"赞一下我们\",\n" +
+                "               \"key\":\"V1001_GOOD\"\n" +
+                "            }]\n" +
+                "       }]\n" +
+                " }";
+        String responseContent = HttpClientUtil.sendHttpPostJson(url, menuStr);
+        logger.info(responseContent);
+    }
     public static void main(String[] args) {
-        getAccessToken();
+        createMenu();
     }
 }

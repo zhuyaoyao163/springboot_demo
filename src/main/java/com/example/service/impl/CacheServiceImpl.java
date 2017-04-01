@@ -35,8 +35,12 @@ public class CacheServiceImpl implements CacheService {
     public void initDictionary() {
         LOGGER.info("初始化缓存......");
         String access_token = WxUtil.getAccessToken(appid,secret);
+        String jsapi_ticket = WxUtil.getJsapiTicket(access_token);
         if (!StringUtils.isEmpty(access_token)){
             pushCache(Constant.ACCESS_TOKEN,access_token);
+            pushCache(Constant.JSAPI_TICKET,jsapi_ticket);
+            pushCache(Constant.APP_ID,appid);
+            pushCache(Constant.APP_SECRET,secret);
         }else {
             LOGGER.info("初始化缓存中获取access_token失败！");
         }

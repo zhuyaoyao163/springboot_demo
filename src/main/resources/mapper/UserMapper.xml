@@ -15,10 +15,11 @@
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
     <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+    <result column="LEADER_FLAG" property="leaderFlag" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     ID, USER_NAME, PASS_WORD, DEPARTMENT_ID, CAR_LEADER_ID, EMAIL, PHONE, ADRESS, USER_CODE, 
-    FLAG, CREATE_TIME, UPDATE_TIME, OPEN_ID
+    FLAG, CREATE_TIME, UPDATE_TIME, OPEN_ID, LEADER_FLAG
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -35,12 +36,12 @@
       DEPARTMENT_ID, CAR_LEADER_ID, EMAIL, 
       PHONE, ADRESS, USER_CODE, 
       FLAG, CREATE_TIME, UPDATE_TIME, 
-      OPEN_ID)
+      OPEN_ID, LEADER_FLAG)
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR}, 
       #{departmentId,jdbcType=INTEGER}, #{carLeaderId,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{adress,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}, 
       #{flag,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{openId,jdbcType=VARCHAR})
+      #{openId,jdbcType=VARCHAR}, #{leaderFlag,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.domain.User" >
     insert into jl_user
@@ -84,6 +85,9 @@
       <if test="openId != null" >
         OPEN_ID,
       </if>
+      <if test="leaderFlag != null" >
+        LEADER_FLAG,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -125,6 +129,9 @@
       <if test="openId != null" >
         #{openId,jdbcType=VARCHAR},
       </if>
+      <if test="leaderFlag != null" >
+        #{leaderFlag,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.domain.User" >
@@ -165,6 +172,9 @@
       </if>
       <if test="openId != null" >
         OPEN_ID = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderFlag != null" >
+        LEADER_FLAG = #{leaderFlag,jdbcType=VARCHAR},
       </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}

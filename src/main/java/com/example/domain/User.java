@@ -29,6 +29,8 @@ public class User {
 
     private String openId;
 
+    private String leaderFlag;
+
     public Integer getId() {
         return id;
     }
@@ -131,5 +133,13 @@ public class User {
 
     public void setOpenId(String openId) {
         this.openId = openId;
+    }
+
+    public String getLeaderFlag() {
+        return leaderFlag;
+    }
+
+    public void setLeaderFlag(String leaderFlag) {
+        this.leaderFlag = leaderFlag;
     }
 }
