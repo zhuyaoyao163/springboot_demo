@@ -85,7 +85,7 @@
             <input type="text" class="form-control" id = "defectDesc" name = "defectDesc" rows="3" ></input>
         </div>
         <div class = "form-group">
-            <label for = "idCard">请上传身份证</label>
+            <label for = "idCard">请上传照片</label>
             <input type = "button" id = "idCard" class="btn btn-link" onclick="chooseImage();"></input>
         </div>
         <div class="form-group">
@@ -105,7 +105,7 @@
     var nonceStr = $("#nonceStr").val();
     var signature = $("#signature").val();
     wx.config({
-        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId: appId, // 必填，公众号的唯一标识
         timestamp: timestamp, // 必填，生成签名的时间戳
         nonceStr: nonceStr, // 必填，生成签名的随机串
@@ -132,13 +132,18 @@
         } else {
             arr[0] = localIds;
         }
+        var html = '';
+        var flag = false;
         for (var i = 0;i<arr.length; i++){
+            var localId = arr[i];
+            if( i == arr.length - 1) {
+                flag = true;
+            }
             wx.uploadImage({
                 localId: arr[i], // 需要上传的图片的本地ID，由chooseImage接口获得
                 isShowProgressTips: 1, // 默认为1，显示进度提示
                 success: function (res) {
                     var serverId = res.serverId; // 返回图片的服务器端ID
-
                     var param = {"serverId" : serverId};
                     var url = $("#pageForm").attr('action');
                     url = url.substring(0,url.lastIndexOf("/") + 1) + "downLoadImage";
@@ -149,7 +154,25 @@
                         dataType: "json",
                         success: function(data){
                             if(data.code == 1){
-                                alert(data.msg);
+                                /*if($('.uploadImg').length && $('.uploadImg').length > 0){
+                                    html = '<img src=' + localId + '  alt="alttext" title="titletext" width="20%" style="padding-right: 10"/>';
+                                    $('.uploadImg').append(html);
+                                }else {
+                                    html = '<div class="form-group uploadImg">'+
+                                            '<img src=' + localId + '  alt="alttext" title="titletext" width="20%" style="padding-right: 10"/>' +
+                                            '</div>';
+                                    $('#idCard').parent().append(html);
+                                }*/
+                                if(flag) {
+                                    html = html + '<img src=' + localId + '  alt="alttext" title="titletext" width="20%" style="padding-right: 10"/>';
+                                    var str = '<div class="form-group uploadImg">' + html + '</div>';
+                                    alert(str);
+                                    $('#idCard').parent().append(str);
+                                }else {
+                                    html.append('<img src=' + localId + '  alt="alttext" title="titletext" width="20%" style="padding-right: 10"/>');
+                                }
+
+
                             }
                         },
                         fail: function (data) {

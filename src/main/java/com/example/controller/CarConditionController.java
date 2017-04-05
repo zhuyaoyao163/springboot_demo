@@ -143,7 +143,7 @@ public class CarConditionController {
         String requestUrl = "http://file.api.weixin.qq.com/cgi-bin/media/get?access_token=ACCESS_TOKEN&media_id=MEDIA_ID";
         String access_token = (String) cacheService.getCache(Constant.ACCESS_TOKEN);
         requestUrl = requestUrl.replace("ACCESS_TOKEN", access_token);
-        requestUrl.replace("MEDIA_ID", serverId);
+        requestUrl = requestUrl.replace("MEDIA_ID", serverId);
         logger.info("requestUrl:{}", requestUrl);
         try {
             URL url = new URL(requestUrl);
@@ -152,6 +152,12 @@ public class CarConditionController {
             conn.setRequestMethod("GET");
             conn.setConnectTimeout(30000);
             conn.setReadTimeout(30000);
+            conn.connect();
+            // 获取所有响应头字段
+            Map<String, List<String>> map = conn.getHeaderFields();
+            for (String key : map.keySet()) {
+                logger.info(key + "--->" + map.get(key));
+            }
             //根据上传时间，生成不同的文件夹
             StringBuilder filepath = new StringBuilder();
             filepath.append("E:\\test\\images\\" + "download"+File.separator+"images" + File.separator);
